@@ -21,7 +21,8 @@ interface Headers {
 
 @Component({
   tag: 'ui-list',
-  shadow: true
+  shadow: true,
+  styleUrl: 'ui-list.css'
 })
 export class UIList {
   @Prop() dataTable: any[] = [];
@@ -59,17 +60,13 @@ export class UIList {
   };
 
   render() {
-    return (
-      <div>
-        {this.dataTable.length > 0 ? (
-          <table>
-            <thead>{this.renderHeaders()}</thead>
-            <tbody>{this.renderBody()}</tbody>
-          </table>
-        ) : (
-          'Loading ...'
-        )}
-      </div>
+    return this.dataTable.length > 0 ? (
+      <table>
+        <thead>{this.renderHeaders()}</thead>
+        <tbody>{this.renderBody()}</tbody>
+      </table>
+    ) : (
+      'Loading ...'
     );
   }
 }

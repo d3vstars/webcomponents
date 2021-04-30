@@ -19,9 +19,10 @@
 
 ## Events
 
-| Event                                 | Description | Type                  |
-| ------------------------------------- | ----------- | --------------------- |
-| `fa-event-paginator-page-will-change` |             | `CustomEvent<Object>` |
+| Event                                          | Description | Type                  |
+| ---------------------------------------------- | ----------- | --------------------- |
+| `fa-event-paginator-items-per-page-wil-change` |             | `CustomEvent<Object>` |
+| `fa-event-paginator-page-will-change`          |             | `CustomEvent<Object>` |
 
 
 ----------------------------------------------
