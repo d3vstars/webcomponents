@@ -10,6 +10,14 @@ export namespace Components {
         "dataTable": any[];
         "headers": Headers[];
     }
+    interface UiPaginator {
+        "currentPage": number;
+        "isInputPage": boolean;
+        "isSelectItemsPage": boolean;
+        "itemsPerPage": number;
+        "numItemsPageOptions": number[];
+        "numberPages": number;
+    }
 }
 declare global {
     interface HTMLUiListElement extends Components.UiList, HTMLStencilElement {
@@ -18,8 +26,15 @@ declare global {
         prototype: HTMLUiListElement;
         new (): HTMLUiListElement;
     };
+    interface HTMLUiPaginatorElement extends Components.UiPaginator, HTMLStencilElement {
+    }
+    var HTMLUiPaginatorElement: {
+        prototype: HTMLUiPaginatorElement;
+        new (): HTMLUiPaginatorElement;
+    };
     interface HTMLElementTagNameMap {
         "ui-list": HTMLUiListElement;
+        "ui-paginator": HTMLUiPaginatorElement;
     }
 }
 declare namespace LocalJSX {
@@ -27,8 +42,19 @@ declare namespace LocalJSX {
         "dataTable"?: any[];
         "headers"?: Headers[];
     }
+    interface UiPaginator {
+        "currentPage"?: number;
+        "isInputPage"?: boolean;
+        "isSelectItemsPage"?: boolean;
+        "itemsPerPage"?: number;
+        "numItemsPageOptions"?: number[];
+        "numberPages"?: number;
+        "onFa-event-paginator-items-per-page-wil-change"?: (event: CustomEvent<Object>) => void;
+        "onFa-event-paginator-page-will-change"?: (event: CustomEvent<Object>) => void;
+    }
     interface IntrinsicElements {
         "ui-list": UiList;
+        "ui-paginator": UiPaginator;
     }
 }
 export { LocalJSX as JSX };
@@ -36,6 +62,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ui-list": LocalJSX.UiList & JSXBase.HTMLAttributes<HTMLUiListElement>;
+            "ui-paginator": LocalJSX.UiPaginator & JSXBase.HTMLAttributes<HTMLUiPaginatorElement>;
         }
     }
 }
