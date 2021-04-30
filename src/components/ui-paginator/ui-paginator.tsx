@@ -23,7 +23,7 @@ export class UiPaginator {
   @State() realNumberPage:number;
 
   @Event({eventName: 'fa-event-paginator-page-will-change'}) pageWillChange: EventEmitter<Object>;
-  @Event({eventName: 'fa-event-paginator-items-per-page-wil-change'}) itemsPerPageWillChange: EventEmitter<Object>;
+  @Event({eventName: 'fa-event-paginator-items-per-page-will-change'}) itemsPerPageWillChange: EventEmitter<Object>;
 
   private timeout = null;
 
@@ -98,6 +98,7 @@ export class UiPaginator {
     this.realNumberPage = this.pageReason / numPages;
     // aprox. to up the number of pages
     this.numberPages = Math.ceil(this.realNumberPage);
+    this.itemsPerPageWillChange.emit({oldNumberPages: this.itemsPerPage, newNumberPages: numPages});
     this.itemsPerPage = numPages;
   }
 
@@ -132,10 +133,11 @@ export class UiPaginator {
             : "";
     return <div class="paginator-content">
             <div class="center-container">
-              <div class="go-to-page-content">
-                {goToPageContent}
-              </div>
+              
               <div class="button-content">
+                <div class="go-to-page-content">
+                  {goToPageContent}
+                </div>
                 <button class="button-all-left" onClick={this.goToPage.bind(this, 1)}></button>
                 {this.renderButtons()}
                 <button class="button-all-right" onClick={this.goToPage.bind(this, this.numberPages)}></button>
