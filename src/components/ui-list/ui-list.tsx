@@ -10,13 +10,13 @@ interface RenderFunction {
   (params: any): string;
 }
 
-interface Headers {
+interface HeadersElement {
   key?: string;
   label: string;
   searchable: boolean;
   type?: string;
   render: RenderFunction;
-  actionsButton: ActionsButton[];
+  actionsButton?: ActionsButton[];
 }
 
 @Component({
@@ -26,7 +26,7 @@ interface Headers {
 })
 export class UIList {
   @Prop() dataTable: any[] = [];
-  @Prop() headers: Headers[] = [];
+  @Prop() headers: HeadersElement[] = [];
 
   @Element() action: HTMLElement;
 
