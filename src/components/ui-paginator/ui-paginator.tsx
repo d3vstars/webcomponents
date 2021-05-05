@@ -132,10 +132,10 @@ export class UiPaginator {
             : "";
     return <div class="paginator-content">
             <div class="center-container">
-              <div class="go-to-page-content">
-                {goToPageContent}
-              </div>
               <div class="button-content">
+                <div class="go-to-page-content">
+                  {goToPageContent}
+                </div>
                 <button class="button-all-left" onClick={this.goToPage.bind(this, 1)}></button>
                 {this.renderButtons()}
                 <button class="button-all-right" onClick={this.goToPage.bind(this, this.numberPages)}></button>
