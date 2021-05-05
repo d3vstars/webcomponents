@@ -1,10 +1,9 @@
-import { Component, Event, EventEmitter, h, Listen, Prop, State } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Listen, Prop, State, Element } from '@stencil/core';
 import { getErrors } from "../../utils/utils"
 
 @Component({
   tag: 'ui-paginator',
   styleUrl: 'ui-paginator.css',
-  assetsDirs: ['assets'],
   shadow: true,
 })
 export class UiPaginator {
@@ -15,6 +14,7 @@ export class UiPaginator {
   @Prop({reflect: true, mutable: true}) numItemsPageOptions = [15, 30, 50, 100];
   @Prop({reflect: true, mutable: true}) isInputPage = true;
   @Prop({reflect: true, mutable: true}) isSelectItemsPage = true;
+  @Element() el: HTMLElement;
 
   @State() inputError = [];
   // reason per page (or number of the total elements)
