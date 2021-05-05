@@ -60,13 +60,11 @@ export class UIList {
   };
 
   render() {
-    return this.dataTable.length > 0 ? (
+    return (
       <table>
         <thead>{this.renderHeaders()}</thead>
         <tbody>{this.renderBody()}</tbody>
       </table>
-    ) : (
-      'Loading ...'
     );
   }
 }

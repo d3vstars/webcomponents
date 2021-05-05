@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui-list renders with data 1`] = `
+<ui-list>
+  <mock:shadow-root>
+    <table>
+      <thead>
+        <th>
+          Name
+        </th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            John
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mock:shadow-root>
+</ui-list>
+`;
