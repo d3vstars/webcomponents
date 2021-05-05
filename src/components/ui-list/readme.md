@@ -5,10 +5,10 @@
 
 ## Properties
 
-| Property    | Attribute | Description | Type        | Default |
-| ----------- | --------- | ----------- | ----------- | ------- |
-| `dataTable` | --        |             | `any[]`     | `[]`    |
-| `headers`   | --        |             | `Headers[]` | `[]`    |
+| Property    | Attribute | Description | Type               | Default |
+| ----------- | --------- | ----------- | ------------------ | ------- |
+| `dataTable` | --        |             | `any[]`            | `[]`    |
+| `headers`   | --        |             | `HeadersElement[]` | `[]`    |
 
 
 ----------------------------------------------
