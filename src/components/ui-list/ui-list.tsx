@@ -1,5 +1,4 @@
 import { Component, Prop, Element, h } from '@stencil/core';
-
 interface ActionsButton {
   text: string;
   eventName: string;
@@ -10,7 +9,7 @@ interface RenderFunction {
   (params: any): string;
 }
 
-interface HeadersElement {
+export interface HeadersElement {
   key?: string;
   label: string;
   searchable: boolean;
@@ -18,7 +17,6 @@ interface HeadersElement {
   render: RenderFunction;
   actionsButton?: ActionsButton[];
 }
-
 @Component({
   tag: 'ui-list',
   shadow: true,
