@@ -25,8 +25,10 @@ describe('ui-list', () => {
 
     let cmp = page.doc.createElement('ui-list');
     cmp.dataTable = [{ name: 'John' }];
+
     cmp.headers = [
       {
+        // @ts-ignore
         key: 'name',
         label: 'Name',
         searchable: false,
@@ -35,6 +37,7 @@ describe('ui-list', () => {
         }
       }
     ];
+
     page.root.appendChild(cmp);
     await page.waitForChanges();
 

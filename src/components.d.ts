@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UiList {
         "dataTable": any[];
-        "headers": Headers[];
+        "headers": HeadersElement[];
     }
     interface UiPaginator {
         "currentPage": number;
@@ -40,7 +40,7 @@ declare global {
 declare namespace LocalJSX {
     interface UiList {
         "dataTable"?: any[];
-        "headers"?: Headers[];
+        "headers"?: HeadersElement[];
     }
     interface UiPaginator {
         "currentPage"?: number;
