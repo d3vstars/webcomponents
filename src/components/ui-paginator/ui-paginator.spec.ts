@@ -1,29 +1,29 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { UiPaginator } from './ui-paginator';
 
-describe('uikit-fala-paginator', () => {
+describe('ui-paginator', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [UiPaginator],
-      html: `<uikit-fala-paginator id="paginator" 
+      html: `<ui-paginator id="paginator" 
       number-pages="9" 
       current-page="1"
       items-per-page="18"
-    ></uikit-fala-paginator>`,
+    ></ui-paginator>`,
     });
     expect(root).toEqualHtml(`
-    <uikit-fala-paginator current-page="1" id="paginator" is-input-page="" is-select-items-page="" items-per-page="18" number-pages="9">
+    <ui-paginator current-page="1" id="paginator" is-input-page="" is-select-items-page="" items-per-page="18" number-pages="9">
         <mock:shadow-root>
         <div class="paginator-content">
           <div class="center-container">
-            <div class="go-to-page-content">
-              <div>
-                <label>Go to page: </label>
-                <input class="" type="number" placeholder="Pages">
-                <p class="errors"></p>
-              </div>
-            </div>
             <div class="button-content">
+              <div class="go-to-page-content">
+                <div>
+                  <label>Go to page: </label>
+                  <input class="" type="number" placeholder="Pages">
+                  <p class="errors"></p>
+                </div>
+              </div>
               <button class="button-all-left"></button>
               <button class="button-prev"></button>
               <div class="button-number-container">
@@ -50,29 +50,29 @@ describe('uikit-fala-paginator', () => {
             </div>
           </div>
         </div>
-      </uikit-fala-paginator>
+      </ui-paginator>
     `);
   });
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [UiPaginator],
-      html: `<uikit-fala-paginator id="paginator" 
+      html: `<ui-paginator id="paginator" 
       number-pages="9" 
       current-page="1"
       items-per-page="18"
       is-input-page="false"
       is-select-items-page="false"
-    ></uikit-fala-paginator>`,
+    ></ui-paginator>`,
     });
     expect(root).toEqualHtml(`
-    <uikit-fala-paginator current-page="1" id="paginator" is-input-page="false" is-select-items-page="false" items-per-page="18" number-pages="9">
+    <ui-paginator current-page="1" id="paginator" is-input-page="false" is-select-items-page="false" items-per-page="18" number-pages="9">
     <mock:shadow-root>
     <div class="paginator-content">
       <div class="center-container">
-        <div class="go-to-page-content">
-        </div>
         <div class="button-content">
+          <div class="go-to-page-content">
+          </div>
           <button class="button-all-left"></button>
           <button class="button-prev"></button>
           <div class="button-number-container">
@@ -89,7 +89,7 @@ describe('uikit-fala-paginator', () => {
         </div>
       </div>
     </div>
-  </uikit-fala-paginator>
+  </ui-paginator>
     `);
   });
 });

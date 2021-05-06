@@ -104,7 +104,9 @@ export class UiPaginator {
     this.realNumberPage = this.pageReason / numPages;
     // aprox. to up the number of pages
     this.numberPages = Math.ceil(this.realNumberPage);
+    this.itemsPerPageWillChange.emit({ oldNumItems: this.itemsPerPage, newNumItems: numPages });
     this.itemsPerPage = numPages;
+    
   }
 
   @Listen('fa-event-paginator-page-change')
