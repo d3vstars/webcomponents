@@ -10,11 +10,11 @@ interface RenderFunction {
 }
 
 export interface HeadersElement {
-  key?: string;
+  key: string;
   label: string;
   searchable: boolean;
   type?: string;
-  render: RenderFunction;
+  render?: RenderFunction;
   actionsButton?: ActionsButton[];
 }
 @Component({
