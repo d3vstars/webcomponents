@@ -4,7 +4,7 @@ import { getErrors } from '../../utils/utils';
 @Component({
   tag: 'ui-paginator',
   styleUrl: 'ui-paginator.css',
-  shadow: true
+  shadow: false
 })
 export class UiPaginator {
   @Prop({ reflect: true, mutable: true }) numberPages: number;
