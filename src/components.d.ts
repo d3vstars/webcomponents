@@ -16,8 +16,8 @@ export namespace Components {
         "isInputPage": boolean;
         "isSelectItemsPage": boolean;
         "itemsPerPage": number;
-        "numItemsPageOptions": number[];
         "numberPages": number;
+        "optionsItemsPage": number[];
     }
 }
 declare global {
@@ -48,10 +48,10 @@ declare namespace LocalJSX {
         "isInputPage"?: boolean;
         "isSelectItemsPage"?: boolean;
         "itemsPerPage"?: number;
-        "numItemsPageOptions"?: number[];
         "numberPages"?: number;
-        "onFa-event-paginator-items-per-page-wil-change"?: (event: CustomEvent<Object>) => void;
+        "onFa-event-paginator-items-per-page-will-change"?: (event: CustomEvent<Object>) => void;
         "onFa-event-paginator-page-will-change"?: (event: CustomEvent<Object>) => void;
+        "optionsItemsPage"?: number[];
     }
     interface IntrinsicElements {
         "ui-list": UiList;
