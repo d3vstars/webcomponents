@@ -43,9 +43,11 @@ export class UIList {
             return (
               <td class={header.key}>
                 {header.actionsButton.map(actionButton => (
-                  <button style={actionButton.style} onClick={() => this.handleEvent(value, actionButton.eventName)}>
-                    {actionButton.text}
-                  </button>
+                  <div class="ui-list-button-content">
+                    <button style={actionButton.style} onClick={() => this.handleEvent(value, actionButton.eventName)}>
+                      {actionButton.text}
+                    </button>
+                  </div>
                 ))}
               </td>
             );
