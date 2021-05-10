@@ -41,7 +41,7 @@ export class UIList {
         {this.headers.map(header => {
           if (header.type === 'button') {
             return (
-              <td>
+              <td class={header.key}>
                 {header.actionsButton.map(actionButton => (
                   <button style={actionButton.style} onClick={() => this.handleEvent(value, actionButton.eventName)}>
                     {actionButton.text}
@@ -50,7 +50,7 @@ export class UIList {
               </td>
             );
           } else {
-            return <td innerHTML={header.render(value[header.key])}></td>;
+            return <td class={header.key} innerHTML={header.render(value[header.key])}></td>;
           }
         })}
       </tr>
@@ -59,10 +59,13 @@ export class UIList {
 
   render() {
     return (
-      <table>
+      <div class="ui-list-table-content">
+        <table class="ui-list-table">
         <thead>{this.renderHeaders()}</thead>
         <tbody>{this.renderBody()}</tbody>
       </table>
+      </div>
+      
     );
   }
 }

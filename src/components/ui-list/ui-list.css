@@ -1,24 +1,24 @@
-table {
-  border-spacing: 0 !important;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 16px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 1170px;
+.ui-list-table-content {
   max-width: 100%;
+  overflow-x: auto;
+  margin: 10px 0px;
+}
+
+.ui-list-table {
+  font-family: "Helvetica Neue", sans-serif;
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
+  min-width: 100%;
+  margin: 10px 0px;
 }
 
-thead {
+.ui-list-table  thead {
   background-color: #4e71c0;
   font-size: 12px;
 }
 
-thead th {
+.ui-list-table  thead th {
   border-bottom: none;
   cursor: pointer;
   font-weight: normal;
@@ -31,7 +31,7 @@ thead th {
   background-color: #4e71c0;
 }
 
-tbody td {
+.ui-list-table  tbody td {
   background: #ffffff;
   border: 1px solid #f2f2f2;
   box-sizing: border-box;
@@ -40,6 +40,6 @@ tbody td {
   vertical-align: middle;
 }
 
-tbody td img {
+.ui-list-table tbody td img {
   width: 100px;
 }

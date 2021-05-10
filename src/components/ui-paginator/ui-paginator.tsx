@@ -10,7 +10,7 @@ export class UiPaginator {
   @Prop({ reflect: true, mutable: true }) numberPages: number;
   @Prop({ reflect: true, mutable: true }) currentPage: number;
   @Prop({ reflect: true, mutable: true }) itemsPerPage = 15;
-  @Prop({ reflect: true, mutable: true }) numItemsPageOptions = [15, 30, 50, 100];
+  @Prop({ reflect: true, mutable: true }) optionsItemsPage = [15, 30, 50, 100];
   @Prop({ reflect: true, mutable: true }) isInputPage = true;
   @Prop({ reflect: true, mutable: true }) isSelectItemsPage = true;
   @Element() el: HTMLElement;
@@ -22,7 +22,7 @@ export class UiPaginator {
   @State() realNumberPage: number;
 
   @Event({ eventName: 'fa-event-paginator-page-will-change' }) pageWillChange: EventEmitter<Object>;
-  @Event({ eventName: 'fa-event-paginator-items-per-page-wil-change' }) itemsPerPageWillChange: EventEmitter<Object>;
+  @Event({ eventName: 'fa-event-paginator-items-per-page-will-change' }) itemsPerPageWillChange: EventEmitter<Object>;
 
   private timeout = null;
 
@@ -32,9 +32,9 @@ export class UiPaginator {
     if (!this.realNumberPage) this.realNumberPage = this.numberPages;
     this.pageReason = this.itemsPerPage * this.realNumberPage;
     // If the number of item per page is not in the option items is added
-    if (!this.numItemsPageOptions.includes(this.itemsPerPage)) {
-      this.numItemsPageOptions.push(this.itemsPerPage);
-      this.numItemsPageOptions.sort((a, b) => a - b);
+    if (!this.optionsItemsPage.includes(this.itemsPerPage)) {
+      this.optionsItemsPage.push(this.itemsPerPage);
+      this.optionsItemsPage.sort((a, b) => a - b);
     }
   }
 
@@ -135,7 +135,7 @@ export class UiPaginator {
       <div>
         <label>Items per page</label>
         <select onChange={this.handlerSelectChange.bind(this)}>
-          {this.numItemsPageOptions.map(option => (
+          {this.optionsItemsPage.map(option => (
             <option value={option} selected={option === this.itemsPerPage}>
               {option}
             </option>
