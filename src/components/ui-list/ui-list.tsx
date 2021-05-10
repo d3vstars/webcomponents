@@ -19,7 +19,7 @@ export interface HeadersElement {
 }
 @Component({
   tag: 'ui-list',
-  shadow: true,
+  shadow: false,
   styleUrl: 'ui-list.css'
 })
 export class UIList {

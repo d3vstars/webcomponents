@@ -13,7 +13,6 @@ describe('ui-paginator', () => {
     });
     expect(root).toEqualHtml(`
     <ui-paginator current-page="1" id="paginator" is-input-page="" is-select-items-page="" items-per-page="18" number-pages="9">
-        <mock:shadow-root>
         <div class="paginator-content">
           <div class="center-container">
             <div class="button-content">
@@ -67,7 +66,6 @@ describe('ui-paginator', () => {
     });
     expect(root).toEqualHtml(`
     <ui-paginator current-page="1" id="paginator" is-input-page="false" is-select-items-page="false" items-per-page="18" number-pages="9">
-    <mock:shadow-root>
     <div class="paginator-content">
       <div class="center-container">
         <div class="button-content">
