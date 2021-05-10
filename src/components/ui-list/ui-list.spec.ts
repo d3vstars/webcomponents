@@ -13,7 +13,7 @@ describe('ui-list', () => {
     });
 
     expect(page.root).toEqualHtml(`<ui-list><mock:shadow-root>
-      <table><thead></thead><tbody></tbody></table>
+    <div class="ui-list-table-content"><table class="ui-list-table"><thead></thead><tbody></tbody></table></div>
     </ui-list>`);
   });
 

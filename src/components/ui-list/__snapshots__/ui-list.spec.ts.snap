@@ -3,20 +3,22 @@
 exports[`ui-list renders with data 1`] = `
 <ui-list>
   <mock:shadow-root>
-    <table>
-      <thead>
-        <th>
-          Name
-        </th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            John
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="ui-list-table-content">
+      <table class="ui-list-table">
+        <thead>
+          <th>
+            Name
+          </th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">
+              John
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </mock:shadow-root>
 </ui-list>
 `;
