@@ -11,6 +11,9 @@ export namespace Components {
         "dataTable": any[];
         "headers": HeadersElement[];
     }
+    interface UiModal {
+        "isActive": boolean;
+    }
     interface UiPaginator {
         "currentPage": number;
         "isInputPage": boolean;
@@ -27,6 +30,12 @@ declare global {
         prototype: HTMLUiListElement;
         new (): HTMLUiListElement;
     };
+    interface HTMLUiModalElement extends Components.UiModal, HTMLStencilElement {
+    }
+    var HTMLUiModalElement: {
+        prototype: HTMLUiModalElement;
+        new (): HTMLUiModalElement;
+    };
     interface HTMLUiPaginatorElement extends Components.UiPaginator, HTMLStencilElement {
     }
     var HTMLUiPaginatorElement: {
@@ -35,6 +44,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ui-list": HTMLUiListElement;
+        "ui-modal": HTMLUiModalElement;
         "ui-paginator": HTMLUiPaginatorElement;
     }
 }
@@ -42,6 +52,9 @@ declare namespace LocalJSX {
     interface UiList {
         "dataTable"?: any[];
         "headers"?: HeadersElement[];
+    }
+    interface UiModal {
+        "isActive"?: boolean;
     }
     interface UiPaginator {
         "currentPage"?: number;
@@ -55,6 +68,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ui-list": UiList;
+        "ui-modal": UiModal;
         "ui-paginator": UiPaginator;
     }
 }
@@ -63,6 +77,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ui-list": LocalJSX.UiList & JSXBase.HTMLAttributes<HTMLUiListElement>;
+            "ui-modal": LocalJSX.UiModal & JSXBase.HTMLAttributes<HTMLUiModalElement>;
             "ui-paginator": LocalJSX.UiPaginator & JSXBase.HTMLAttributes<HTMLUiPaginatorElement>;
         }
     }

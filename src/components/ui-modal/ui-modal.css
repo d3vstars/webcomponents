@@ -1,0 +1,95 @@
+:host {
+  width: 100%;
+  font-family: "Helvetica Neue", sans-serif;
+  margin: 10px 0px;
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+.modal-content {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  -webkit-transition:  top 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  -ms-transition: opacity 0.25s ease;
+  -o-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+}
+
+.modal-content.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content .modal-back {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  
+  z-index: 900;
+}
+
+.modal-content .modal{
+  position: fixed;
+  z-index: 901;
+  background-color: #ffffff;
+  top: 0vh;  
+  overflow: auto;
+  min-width: 50%;
+  border-radius: 2px;
+  max-width: 90%;
+  max-height: 80vh;
+  -webkit-transition: top 0.25s ease;
+  -moz-transition: top 0.25s ease;
+  -ms-transition: top 0.25s ease;
+  -o-transition: top 0.25s ease;
+  transition: top 0.25s ease;
+}
+
+.modal-content.active .modal{
+  top: 10vh;
+}
+
+.modal-content .modal slot[name="title"]{
+  color: red;
+  width: 100%;
+  padding: 20px 20px;
+  display: block;
+  border-bottom: 1px solid #ccc;
+  font-size: 20px;
+  color: #333;
+  font-weight: 400;
+}
+
+.modal-content .modal slot[name="content"] {
+  padding: 20px 20px;
+  display: block;
+}
+
+.modal-content .modal .close {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  right: 10px;
+  top: 10px;
+}
+
+.modal-content .modal .close::before {
+  content: '\00d7';
+  font-weight: 300;
+  height: 100%;
+  font-size: 20px;
+  line-height: 13px;
+}
