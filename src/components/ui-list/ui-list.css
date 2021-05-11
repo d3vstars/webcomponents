@@ -9,8 +9,7 @@
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
-  min-width: 100%;
-  margin: 10px 0px;
+  min-width: calc(100% - 2px);
 }
 
 .ui-list-table  thead {
