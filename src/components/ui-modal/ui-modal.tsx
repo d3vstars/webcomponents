@@ -6,7 +6,7 @@ import { Component, h, Prop, Element } from '@stencil/core';
   shadow: true
 })
 export class UiModal {
-  @Prop({ reflect: true, mutable: true }) isActive: boolean;
+  @Prop({ reflect: true, mutable: true }) isActive: boolean = false;
   @Element() host: HTMLElement;
 
   closeModal = () => {
