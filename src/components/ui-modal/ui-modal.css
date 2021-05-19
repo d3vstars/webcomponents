@@ -32,6 +32,7 @@
   opacity: 0;
   pointer-events: none;
   justify-content: center;
+  align-items: center;
 }
 
 .modal-content.active {
@@ -43,30 +44,28 @@
   height: 100vh;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  
   z-index: 900;
 }
 
 .modal-content .modal{
   position: fixed;
   z-index: 901;
-  background-color: #ffffff;
-  top: 0vh;  
+  background-color: #ffffff; 
   overflow: auto;
-  min-width: 30%;
   border-radius: 2px;
   width: var(--modal-width, 50%);
   max-width: 90%;
   max-height: 80vh;
-  -webkit-transition: top 0.25s ease;
-  -moz-transition: top 0.25s ease;
-  -ms-transition: top 0.25s ease;
-  -o-transition: top 0.25s ease;
-  transition: top 0.25s ease;
+  margin-top: -10%;
+  -webkit-transition: margin-top 0.25s ease;
+  -moz-transition: margin-top 0.25s ease;
+  -ms-transition: margin-top 0.25s ease;
+  -o-transition: margin-top 0.25s ease;
+  transition: margin-top 0.25s ease;
 }
 
 .modal-content.active .modal{
-  top: 10vh;
+  margin-top: 0%;
 }
 
 .modal-content .modal slot[name="title"]{
