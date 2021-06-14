@@ -105,12 +105,12 @@ select {
   align-items: baseline;
 }
 
-.go-to-page-content label {
+.go-to-page-content label.paginator-label {
   font-size: 13px;
   color: #999;
 }
 
-.go-to-page-content input {
+.go-to-page-content input.paginator-input {
   font-size: 12px;
   color: #495057;
   width: 47px;
@@ -146,12 +146,12 @@ select {
   align-items: baseline;
 }
 
-.item-page label {
+.item-page label.select-label {
   font-size: 13px;
   color: #999;
 }
 
-.item-page select {
+.item-page select.select-input {
   font-size: 13px;
   border: 1px solid #CED4DA;
   padding: 5px 20px 5px 5px;

@@ -119,9 +119,9 @@ export class UiPaginator {
   render() {
     const goToPageContent = this.isInputPage ? (
       <div>
-        <label>Go to page: </label>
+        <label class="paginator-label">Go to page: </label>
         <input
-          class={!this.inputError.length ? '' : 'error'}
+          class={!this.inputError.length ? 'paginator-input' : 'paginator-input error'}
           type='number'
           onInput={this.handlerInput.bind(this)}
           placeholder='Pages'
@@ -133,8 +133,8 @@ export class UiPaginator {
     );
     const itemsPerPageSelect = this.isSelectItemsPage ? (
       <div>
-        <label>Items per page</label>
-        <select onChange={this.handlerSelectChange.bind(this)}>
+        <label class="select-label">Items per page</label>
+        <select class="select-input" onChange={this.handlerSelectChange.bind(this)}>
           {this.optionsItemsPage.map(option => (
             <option value={option} selected={option === this.itemsPerPage}>
               {option}
