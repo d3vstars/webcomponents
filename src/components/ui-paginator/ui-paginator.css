@@ -108,6 +108,9 @@ select {
 .go-to-page-content label.paginator-label {
   font-size: 13px;
   color: #999;
+  display: initial;
+  margin: 0;
+  line-height: initial;
 }
 
 .go-to-page-content input.paginator-input {
@@ -117,6 +120,12 @@ select {
   padding: 5.5px 5px;
   margin: 0 0.18rem;
   border: 1px solid #CED4DA;
+  background-color: transparent;
+  box-shadow: inherit;
+  height: 28px;
+  line-height: inherit;
+  display: initial;
+  vertical-align: initial;
 }
 
 .go-to-page-content input.error {
@@ -149,6 +158,9 @@ select {
 .item-page label.select-label {
   font-size: 13px;
   color: #999;
+  display: initial;
+  margin: 0;
+  line-height: initial;
 }
 
 .item-page select.select-input {
@@ -162,6 +174,8 @@ select {
   background-size: 10px;
   border-radius: 0px;
   height: 28px;
+  width: auto;
+  line-height: initial;
 }
 
 .button-all-right {
