@@ -5,19 +5,19 @@
 }
 
 .ui-list-table {
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
   min-width: calc(100% - 2px);
 }
 
-.ui-list-table  thead {
+.ui-list-table thead {
   background-color: #4e71c0;
   font-size: 12px;
 }
 
-.ui-list-table  thead th {
+.ui-list-table thead th {
   border-bottom: none;
   cursor: pointer;
   font-weight: normal;
@@ -30,7 +30,7 @@
   background-color: #4e71c0;
 }
 
-.ui-list-table  tbody td {
+.ui-list-table tbody td {
   background: #ffffff;
   border: 1px solid #f2f2f2;
   box-sizing: border-box;
@@ -41,4 +41,10 @@
 
 .ui-list-table tbody td img {
   width: 100px;
+}
+
+.helper-message {
+  text-align: center;
+  font-size: 14px;
+  margin: 10px;
 }
