@@ -36,38 +36,43 @@ export class UIList {
   };
 
   renderBody = () => {
-    return this.dataTable.map(value => (
-      <tr>
-        {this.headers.map(header => {
-          if (header.type === 'button') {
-            return (
-              <td class={header.key}>
-                {header.actionsButton.map(actionButton => (
-                  <div class="ui-list-button-content">
-                    <button style={actionButton.style} onClick={() => this.handleEvent(value, actionButton.eventName)}>
-                      {actionButton.text}
-                    </button>
-                  </div>
-                ))}
-              </td>
-            );
-          } else {
-            return <td class={header.key} innerHTML={header.render(value[header.key])}></td>;
-          }
-        })}
-      </tr>
-    ));
+    return (
+      this.dataTable.length > 1 &&
+      this.dataTable.map(value => (
+        <tr>
+          {this.headers.map(header => {
+            if (header.type === 'button') {
+              return (
+                <td class={header.key}>
+                  {header.actionsButton.map(actionButton => (
+                    <div class='ui-list-button-content'>
+                      <button
+                        style={actionButton.style}
+                        onClick={() => this.handleEvent(value, actionButton.eventName)}>
+                        {actionButton.text}
+                      </button>
+                    </div>
+                  ))}
+                </td>
+              );
+            } else {
+              return <td class={header.key} innerHTML={header.render(value[header.key])}></td>;
+            }
+          })}
+        </tr>
+      ))
+    );
   };
 
   render() {
     return (
-      <div class="ui-list-table-content">
-        <table class="ui-list-table">
-        <thead>{this.renderHeaders()}</thead>
-        <tbody>{this.renderBody()}</tbody>
-      </table>
+      <div class='ui-list-table-content'>
+        <table class='ui-list-table'>
+          <thead>{this.renderHeaders()}</thead>
+          <tbody>{this.dataTable.length > 0 && this.renderBody()}</tbody>
+        </table>
+        {this.dataTable.length === 0 && <div class='helper-message'>No data available</div>}
       </div>
-      
     );
   }
 }
