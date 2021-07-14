@@ -37,7 +37,7 @@ export class UIList {
 
   renderBody = () => {
     return (
-      this.dataTable.length >= 1 &&
+      this.dataTable[0].id &&
       this.dataTable.map(value => (
         <tr>
           {this.headers.map(header => {
