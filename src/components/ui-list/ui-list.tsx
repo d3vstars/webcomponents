@@ -35,9 +35,13 @@ export class UIList {
     this.action.dispatchEvent(event);
   };
 
+  isEmpty = obj => {
+    return Object.keys(obj).length === 0;
+  };
+
   renderBody = () => {
     return (
-      this.dataTable[0].id &&
+      !this.isEmpty(this.dataTable[0]) &&
       this.dataTable.map(value => (
         <tr>
           {this.headers.map(header => {
