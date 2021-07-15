@@ -52,6 +52,7 @@ declare namespace LocalJSX {
     interface UiList {
         "dataTable"?: any[];
         "headers"?: HeadersElement[];
+        "onFa-event-list-order-by"?: (event: CustomEvent<Object>) => void;
     }
     interface UiModal {
         "isActive"?: boolean;

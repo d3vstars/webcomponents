@@ -11,6 +11,13 @@
 | `headers`   | --        |             | `HeadersElement[]` | `[]`    |
 
 
+## Events
+
+| Event                    | Description | Type                  |
+| ------------------------ | ----------- | --------------------- |
+| `fa-event-list-order-by` |             | `CustomEvent<Object>` |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
