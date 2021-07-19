@@ -34,7 +34,8 @@ describe('ui-list', () => {
         searchable: false,
         render: (nameAttribute: string) => {
           return nameAttribute;
-        }
+        },
+        sortable: true,
       }
     ];
 
