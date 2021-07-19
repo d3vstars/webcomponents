@@ -1,4 +1,4 @@
-import { Component, Prop, Element, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, State, h } from '@stencil/core';
 interface ActionsButton {
   text: string;
   eventName: string;
@@ -7,6 +7,13 @@ interface ActionsButton {
 
 interface RenderFunction {
   (params: any): string;
+}
+
+const TypeOrderBy: string[] = ["asc", "desc"];
+
+interface OrderBy {
+  columnKey: string | null;
+  type:  string | null;
 }
 
 export interface HeadersElement {
@@ -25,10 +32,40 @@ export interface HeadersElement {
 export class UIList {
   @Prop() dataTable: any[] = [];
   @Prop() headers: HeadersElement[] = [];
+  @State() orderBy: OrderBy = {
+    columnKey: null,
+    type: null
+  };
 
   @Element() action: HTMLElement;
 
-  renderHeaders = () => this.headers.map(value => <th>{value.label}</th>);
+  @Event({ eventName: 'fa-event-list-order-by' }) listOrderBy: EventEmitter<Object>;
+
+  renderHeaders = () => this.headers.map(value => <th>
+      <p>{value.label}</p>
+      <i class={this.orderBy.columnKey === value.key ? this.orderBy.type === TypeOrderBy[0] ? "orderByAsc": "orderByDesc" : "withoutOrderBy"} onClick={this.changeOrderBy.bind(this, value.key)}/>
+  </th>);
+
+  changeOrderBy(keyHeader: string) {
+    const indexTypeOrderBy = TypeOrderBy.findIndex(el => el === this.orderBy.type)
+    if (indexTypeOrderBy === -1 || keyHeader !== this.orderBy.columnKey) {
+      this.orderBy = {
+        columnKey: keyHeader,
+        type: TypeOrderBy[0]
+      }
+    } else if (indexTypeOrderBy === 0) {
+      this.orderBy = {
+        columnKey: keyHeader,
+        type: TypeOrderBy[1]
+      }
+    } else if (indexTypeOrderBy === 1) {
+      this.orderBy = {
+        columnKey: null,
+        type: null
+      }
+    }
+    this.listOrderBy.emit(this.orderBy);
+  }
 
   handleEvent = (value: any, eventName: string) => {
     const event = new CustomEvent(eventName, { detail: value });
