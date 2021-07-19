@@ -23,6 +23,7 @@ export interface HeadersElement {
   type?: string;
   render?: RenderFunction;
   actionsButton?: ActionsButton[];
+  sortable: boolean,
 }
 @Component({
   tag: 'ui-list',
@@ -43,7 +44,11 @@ export class UIList {
 
   renderHeaders = () => this.headers.map(value => <th>
       <p>{value.label}</p>
-      <i class={this.orderBy.columnKey === value.key ? this.orderBy.type === TypeOrderBy[0] ? "orderByAsc": "orderByDesc" : "withoutOrderBy"} onClick={this.changeOrderBy.bind(this, value.key)}/>
+      {
+        value.sortable ? 
+        <i class={this.orderBy.columnKey === value.key ? this.orderBy.type === TypeOrderBy[0] ? "orderByAsc": "orderByDesc" : "withoutOrderBy"} onClick={this.changeOrderBy.bind(this, value.key)}/>
+        : null
+      }
   </th>);
 
   changeOrderBy(keyHeader: string) {
