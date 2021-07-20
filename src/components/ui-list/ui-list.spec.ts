@@ -13,7 +13,7 @@ describe('ui-list', () => {
     });
 
     expect(page.root).toEqualHtml(`<ui-list>
-    <div class="ui-list-table-content"><table class="ui-list-table"><thead></thead><tbody></tbody></table></div>
+    <div class="ui-list-table-content"><table class="ui-list-table"><thead></thead><tbody></tbody></table><div class="helper-message">No data available</div></div>
     </ui-list>`);
   });
 

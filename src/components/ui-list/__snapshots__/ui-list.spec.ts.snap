@@ -6,7 +6,10 @@ exports[`ui-list renders with data 1`] = `
     <table class="ui-list-table">
       <thead>
         <th>
-          Name
+          <p>
+            Name
+          </p>
+          <i class="withoutOrderBy"></i>
         </th>
       </thead>
       <tbody>
