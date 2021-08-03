@@ -92,3 +92,21 @@
 .ui-list-table .tr-accordion {
   cursor: pointer;
 }
+
+.ui-list-table .tr-accordion-details td {
+  padding: 0px;
+}
+
+.ui-list-table .tr-accordion-details td div {
+  max-height: 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: max-height 0.3s, padding 0.3s;
+}
+
+.ui-list-table .tr-accordion-details-show td div {
+  max-height: 2000px;
+  padding: 10px 10px;
+  transition: max-height 0.3s, padding 0.3s;
+}

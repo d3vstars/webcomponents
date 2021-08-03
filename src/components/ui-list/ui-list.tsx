@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, State, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, State, h, Fragment } from '@stencil/core';
 interface ActionsButton {
   text: string;
   eventName: string;
@@ -34,13 +34,127 @@ export interface HeadersElement {
   styleUrl: 'ui-list.css'
 })
 export class UIList {
-  @Prop() dataTable: any[] = [];
-  @Prop() headers: HeadersElement[] = [];
+  @Prop() dataTable: any[] = [{ itemId: '1234567' }, { itemId: '12345627' }]//[];
+  @Prop() headers: HeadersElement[] = [
+    {
+      key: 'accordion',
+      label: '',
+      searchable: false,
+      sortable: false,
+      accordion: true,
+      render: () => {
+        return '+';
+      }
+    },
+    {
+      key: 'itemId',
+      label: 'Item Id',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'falabellaId',
+      label: 'Falabella Id',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'sellerSKU',
+      label: 'Seller SKU',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'falabellaSKU',
+      label: 'Falabella SKU',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'product',
+      label: 'Product',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'shipmentType',
+      label: 'Shipment Type',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'price',
+      label: 'Price',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'shipping',
+      label: 'Shipping',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'status',
+      label: 'Status',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    }
+  ];//[];
+  @Prop() dataTableAccordion?: any[] = [{ itemId: '1234567', falabellaId: "09876567" }, { itemId: '12345627', falabellaId: "09876567" }];
+  @Prop() headerAccordion?: any[] = [    {
+    key: 'itemId',
+    label: 'Item Id',
+    searchable: false,
+    sortable: true,
+    render: (params: string): string => {
+      return params;
+    }
+  },
+  {
+    key: 'falabellaId',
+    label: 'Falabella Id',
+    searchable: false,
+    sortable: true,
+    render: (params: string): string => {
+      return params;
+    }
+  },];
+
   @State() orderBy: OrderBy = {
     columnKey: null,
     type: null
   };
 
+  @State() accordion: number | null = null;
+  
   @Element() action: HTMLElement;
 
   @Event({ eventName: 'fa-event-list-order-by' }) listOrderBy: EventEmitter<Object>;
@@ -63,6 +177,26 @@ export class UIList {
         ) : null}
       </th>
     ));
+
+  renderHeadersAccordion = () =>
+    this.headerAccordion.map(value => (
+      <th>
+        <p>{value.label}</p>
+        {/* {value.sortable ? (
+          <i
+            class={
+              this.orderBy.columnKey === value.key
+                ? this.orderBy.type === TypeOrderBy[0]
+                  ? 'orderByAsc'
+                  : 'orderByDesc'
+                : 'withoutOrderBy'
+            }
+            onClick={this.changeOrderBy.bind(this, value.key)}
+          />
+        ) : null} */}
+      </th>
+    ));
+
 
   changeOrderBy(keyHeader: string) {
     const indexTypeOrderBy = TypeOrderBy.findIndex(el => el === this.orderBy.type);
@@ -100,7 +234,23 @@ export class UIList {
   };
 
   toggleExpander = index => {
-    console.log('### COLUMN INDEX', index);
+    console.log('### COLUMN INDEX', index, index === this.accordion);
+    index === this.accordion ? this.accordion = null : this.accordion = index;
+  };
+
+  renderBodyAccordion = () => {
+    return (
+      !this.isEmpty(this.dataTableAccordion[0]) &&
+      this.dataTableAccordion.map((value, index) => {
+        return (
+          <tr key={index}>
+            {
+              this.headerAccordion.map(header =><td class={header.key} innerHTML={header.render(value[header.key])}></td>)
+            }
+          </tr>
+        );
+      })
+    );
   };
 
   renderBody = () => {
@@ -108,6 +258,7 @@ export class UIList {
       !this.isEmpty(this.dataTable[0]) &&
       this.dataTable.map((value, index) => {
         return (
+          <Fragment>
           <tr key={index}>
             {this.headers.map(header => {
               if (header.type === 'button') {
@@ -145,6 +296,18 @@ export class UIList {
               }
             })}
           </tr>
+          { this.headers.find(el => el.accordion) ? 
+          <tr key={`accordion-${index}`} class={`tr-accordion-details ${this.accordion === index ? 'tr-accordion-details-show' : ""}`}>
+            <td colSpan={this.headers.length}>
+              <div>
+              <table class='ui-list-table' id='example'>
+                <thead>{this.renderHeadersAccordion()}</thead>
+                <tbody>{this.dataTableAccordion.length > 0 && this.renderBodyAccordion()}</tbody>
+              </table>
+              </div>
+            </td>
+          </tr> : null }
+          </Fragment>
         );
       })
     );
