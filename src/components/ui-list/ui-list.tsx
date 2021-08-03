@@ -40,7 +40,6 @@ export class UIList {
     columnKey: null,
     type: null
   };
-  @State() expanded: boolean = false;
 
   @Element() action: HTMLElement;
 
@@ -137,7 +136,7 @@ export class UIList {
                 if (header.accordion) {
                   return (
                     <td
-                      class={`${header.key} table-accordion`}
+                      class={`${header.key} tr-accordion`}
                       onClick={() => this.toggleExpander(index)}
                       innerHTML={header.render(value[header.key])}></td>
                   );
