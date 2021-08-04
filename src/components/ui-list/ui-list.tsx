@@ -34,127 +34,17 @@ export interface HeadersElement {
   styleUrl: 'ui-list.css'
 })
 export class UIList {
-  @Prop() dataTable: any[] = [{ itemId: '1234567' }, { itemId: '12345627' }]//[];
-  @Prop() headers: HeadersElement[] = [
-    {
-      key: 'accordion',
-      label: '',
-      searchable: false,
-      sortable: false,
-      accordion: true,
-      render: () => {
-        return '+';
-      }
-    },
-    {
-      key: 'itemId',
-      label: 'Item Id',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    },
-    {
-      key: 'falabellaId',
-      label: 'Falabella Id',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    },
-    {
-      key: 'sellerSKU',
-      label: 'Seller SKU',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    },
-    {
-      key: 'falabellaSKU',
-      label: 'Falabella SKU',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    },
-    {
-      key: 'product',
-      label: 'Product',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    },
-    {
-      key: 'shipmentType',
-      label: 'Shipment Type',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    },
-    {
-      key: 'price',
-      label: 'Price',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    },
-    {
-      key: 'shipping',
-      label: 'Shipping',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    },
-    {
-      key: 'status',
-      label: 'Status',
-      searchable: false,
-      sortable: true,
-      render: (params: string): string => {
-        return params;
-      }
-    }
-  ];//[];
-  @Prop() dataTableAccordion?: any[] = [{ itemId: '1234567', falabellaId: "09876567" }, { itemId: '12345627', falabellaId: "09876567" }];
-  @Prop() headerAccordion?: any[] = [    {
-    key: 'itemId',
-    label: 'Item Id',
-    searchable: false,
-    sortable: true,
-    render: (params: string): string => {
-      return params;
-    }
-  },
-  {
-    key: 'falabellaId',
-    label: 'Falabella Id',
-    searchable: false,
-    sortable: true,
-    render: (params: string): string => {
-      return params;
-    }
-  },];
+  @Prop() dataTable: any[] = [];
+  @Prop() headers: HeadersElement[] = [];
+  @Prop() dataTableAccordion?: any[] = [];
+  @Prop() headerAccordion?: any[] = [];
 
   @State() orderBy: OrderBy = {
     columnKey: null,
     type: null
   };
-
   @State() accordion: number | null = null;
-  
+
   @Element() action: HTMLElement;
 
   @Event({ eventName: 'fa-event-list-order-by' }) listOrderBy: EventEmitter<Object>;
@@ -197,7 +87,6 @@ export class UIList {
       </th>
     ));
 
-
   changeOrderBy(keyHeader: string) {
     const indexTypeOrderBy = TypeOrderBy.findIndex(el => el === this.orderBy.type);
     if (indexTypeOrderBy === -1 || keyHeader !== this.orderBy.columnKey) {
@@ -233,20 +122,17 @@ export class UIList {
     this.action.dispatchEvent(event);
   };
 
-  toggleExpander = index => {
-    console.log('### COLUMN INDEX', index, index === this.accordion);
-    index === this.accordion ? this.accordion = null : this.accordion = index;
-  };
+  toggleExpander = (index: number) => (index === this.accordion ? (this.accordion = null) : (this.accordion = index));
 
   renderBodyAccordion = () => {
     return (
-      !this.isEmpty(this.dataTableAccordion[0]) &&
-      this.dataTableAccordion.map((value, index) => {
+      !this.isEmpty(this.dataTable[0]) &&
+      this.dataTable.map((value, index) => {
         return (
           <tr key={index}>
-            {
-              this.headerAccordion.map(header =><td class={header.key} innerHTML={header.render(value[header.key])}></td>)
-            }
+            {this.headerAccordion.map(header => (
+              <td class={header.key} innerHTML={header.render(value.infoDetails[header.key])}></td>
+            ))}
           </tr>
         );
       })
@@ -259,54 +145,57 @@ export class UIList {
       this.dataTable.map((value, index) => {
         return (
           <Fragment>
-          <tr key={index}>
-            {this.headers.map(header => {
-              if (header.type === 'button') {
-                return (
-                  <td class={header.key}>
-                    {header.actionsButton.map(actionButton => (
-                      <div class='ui-list-button-content'>
-                        <button
-                          style={actionButton.style}
-                          onClick={() => this.handleEvent(value, actionButton.eventName)}>
-                          {actionButton.text}
-                        </button>
-                      </div>
-                    ))}
-                  </td>
-                );
-              } else {
-                if (header.redirect) {
+            <tr key={index}>
+              {this.headers.map(header => {
+                if (header.type === 'button') {
                   return (
-                    <td
-                      class={`${header.key} redirect-field`}
-                      onClick={() => this.handleRedirectField(header.render(value[header.key]), header.eventName)}
-                      innerHTML={header.render(value[header.key])}></td>
+                    <td class={header.key}>
+                      {header.actionsButton.map(actionButton => (
+                        <div class='ui-list-button-content'>
+                          <button
+                            style={actionButton.style}
+                            onClick={() => this.handleEvent(value, actionButton.eventName)}>
+                            {actionButton.text}
+                          </button>
+                        </div>
+                      ))}
+                    </td>
                   );
+                } else {
+                  if (header.redirect) {
+                    return (
+                      <td
+                        class={`${header.key} redirect-field`}
+                        onClick={() => this.handleRedirectField(header.render(value[header.key]), header.eventName)}
+                        innerHTML={header.render(value[header.key])}></td>
+                    );
+                  }
+                  if (header.accordion) {
+                    return (
+                      <td
+                        class={`${header.key} tr-accordion`}
+                        onClick={() => this.toggleExpander(index)}
+                        innerHTML={header.render(value[header.key])}></td>
+                    );
+                  }
+                  return <td class={header.key} innerHTML={header.render(value[header.key])}></td>;
                 }
-                if (header.accordion) {
-                  return (
-                    <td
-                      class={`${header.key} tr-accordion`}
-                      onClick={() => this.toggleExpander(index)}
-                      innerHTML={header.render(value[header.key])}></td>
-                  );
-                }
-                return <td class={header.key} innerHTML={header.render(value[header.key])}></td>;
-              }
-            })}
-          </tr>
-          { this.headers.find(el => el.accordion) ? 
-          <tr key={`accordion-${index}`} class={`tr-accordion-details ${this.accordion === index ? 'tr-accordion-details-show' : ""}`}>
-            <td colSpan={this.headers.length}>
-              <div>
-              <table class='ui-list-table' id='example'>
-                <thead>{this.renderHeadersAccordion()}</thead>
-                <tbody>{this.dataTableAccordion.length > 0 && this.renderBodyAccordion()}</tbody>
-              </table>
-              </div>
-            </td>
-          </tr> : null }
+              })}
+            </tr>
+            {this.headers.find(el => el.accordion) ? (
+              <tr
+                key={`accordion-${index}`}
+                class={`tr-accordion-details ${this.accordion === index ? 'tr-accordion-details-show' : ''}`}>
+                <td colSpan={this.headers.length}>
+                  <div>
+                    <table class='ui-list-table' id='example'>
+                      <thead>{this.renderHeadersAccordion()}</thead>
+                      <tbody>{this.dataTableAccordion.length > 0 && this.renderBodyAccordion()}</tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            ) : null}
           </Fragment>
         );
       })

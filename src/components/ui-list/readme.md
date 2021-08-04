@@ -5,10 +5,12 @@
 
 ## Properties
 
-| Property    | Attribute | Description | Type               | Default |
-| ----------- | --------- | ----------- | ------------------ | ------- |
-| `dataTable` | --        |             | `any[]`            | `[]`    |
-| `headers`   | --        |             | `HeadersElement[]` | `[]`    |
+| Property             | Attribute | Description | Type               | Default |
+| -------------------- | --------- | ----------- | ------------------ | ------- |
+| `dataTable`          | --        |             | `any[]`            | `[]`    |
+| `dataTableAccordion` | --        |             | `any[]`            | `[]`    |
+| `headerAccordion`    | --        |             | `any[]`            | `[]`    |
+| `headers`            | --        |             | `HeadersElement[]` | `[]`    |
 
 
 ## Events
