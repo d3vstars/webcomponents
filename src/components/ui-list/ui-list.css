@@ -93,20 +93,40 @@
   cursor: pointer;
 }
 
+.ui-list-table .tr-selected td {
+  background-color: rgb(250, 251, 227) !important;
+}
+
 .ui-list-table .tr-accordion-details td {
   padding: 0px;
 }
 
 .ui-list-table .tr-accordion-details td div {
   max-height: 0;
-  padding: 0 10px;
+  padding: 0 20px;
   box-sizing: border-box;
   overflow: hidden;
-  transition: max-height 0.3s, padding 0.3s;
+  transition: max-height 0.3s, padding 0.5s;
+}
+
+.ui-list-table .tr-accordion-details td div table thead th {
+  background-color: rgb(250, 251, 227) !important;
+  color: black;
 }
 
 .ui-list-table .tr-accordion-details-show td div {
   max-height: 2000px;
-  padding: 10px 10px;
+  padding: 18px 31px 45px 36px;
   transition: max-height 0.3s, padding 0.3s;
+  background-color: rgb(239, 239, 239);
+  box-shadow: inset 1px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ui-list-table .tr-accordion-details-show td div table thead th {
+  background-color: rgb(250, 251, 227) !important;
+  color: black;
+}
+
+.ui-list-table .tr-accordion-details-show td div table tbody tr td {
+  padding: 7px;
 }

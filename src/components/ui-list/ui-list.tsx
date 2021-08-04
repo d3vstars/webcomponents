@@ -34,10 +34,223 @@ export interface HeadersElement {
   styleUrl: 'ui-list.css'
 })
 export class UIList {
-  @Prop() dataTable: any[] = [];
-  @Prop() headers: HeadersElement[] = [];
+  @Prop() dataTable: any[] = [
+    {
+      "": "",
+      "itemId": "7a43929c-b32a-44dc-a4b6-5798a236740f",
+      "falabellaId": "",
+      "sellerSKU": "7183779",
+      "falabellaSKU": "7183779",
+      "product": "",
+      "shipmentType": "",
+      "price": 479990,
+      "shipping": "",
+      "status": "CREATED",
+      "infoDetails": {
+        "date": "1234567890",
+        "transactionType": "234567890",
+        "transactionValue": "34567890",
+        "transactionNumber": "4567890",
+        "transactionAccountStatement": "567890"
+      }
+    },
+    {
+      "": "",
+      "itemId": "08d4b2fc-a1b8-4134-ae28-ee3b2aecd68d",
+      "falabellaId": "",
+      "sellerSKU": "7183779",
+      "falabellaSKU": "7183779",
+      "product": "",
+      "shipmentType": "",
+      "price": 479990,
+      "shipping": "",
+      "status": "CREATED",
+      "infoDetails": {
+        "date": "123434343",
+        "transactionType": "123123213",
+        "transactionValue": "232323",
+        "transactionNumber": "88272772",
+        "transactionAccountStatement": "878267772"
+      }
+    },
+    {
+      "": "",
+      "itemId": "6bec4df8-1484-4e67-8e60-e1c04ebb9c72",
+      "falabellaId": "",
+      "sellerSKU": "7183779",
+      "falabellaSKU": "7183779",
+      "product": "",
+      "shipmentType": "",
+      "price": 149990,
+      "shipping": "",
+      "status": "CREATED",
+      "infoDetails": {
+        "date": "123434343",
+        "transactionType": "123123213",
+        "transactionValue": "232323",
+        "transactionNumber": "88272772",
+        "transactionAccountStatement": "878267772"
+      }
+    },
+    {
+      "": "",
+      "itemId": "a273f261-9bcc-45f7-99c9-c55114d9ddc4",
+      "falabellaId": "",
+      "sellerSKU": "7183779",
+      "falabellaSKU": "7183779",
+      "product": "",
+      "shipmentType": "",
+      "price": 149990,
+      "shipping": "",
+      "status": "CREATED",
+      "infoDetails": {
+        "date": "123434343",
+        "transactionType": "123123213",
+        "transactionValue": "232323",
+        "transactionNumber": "88272772",
+        "transactionAccountStatement": "878267772"
+      }
+    }
+  ];
+  @Prop() headers: HeadersElement[] = [
+    {
+      key: 'accordion',
+      label: '',
+      searchable: false,
+      sortable: false,
+      accordion: true,
+      render: () => {
+        return '+';
+      }
+    },
+    {
+      key: 'itemId',
+      label: 'Item Id',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'falabellaId',
+      label: 'Falabella Id',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'sellerSKU',
+      label: 'Seller SKU',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'falabellaSKU',
+      label: 'Falabella SKU',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'product',
+      label: 'Product',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'shipmentType',
+      label: 'Shipment Type',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'price',
+      label: 'Price',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'shipping',
+      label: 'Shipping',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    },
+    {
+      key: 'status',
+      label: 'Status',
+      searchable: false,
+      sortable: true,
+      render: (params: string): string => {
+        return params;
+      }
+    }
+  ];;
   @Prop() dataTableAccordion?: any[] = [];
-  @Prop() headerAccordion?: any[] = [];
+  @Prop() headerAccordion?: any[] = [{
+    key: 'date',
+    label: 'date',
+    searchable: false,
+    sortable: true,
+    render: (params: string): string => {
+      return params;
+    }
+  },
+  {
+    key: 'transactionType',
+    label: 'Transaction Type',
+    searchable: false,
+    sortable: true,
+    render: (params: string): string => {
+      return params;
+    }
+  },
+  {
+    key: 'transactionValue',
+    label: 'Transaction Value',
+    searchable: false,
+    sortable: true,
+    render: (params: string): string => {
+      return params;
+    }
+  },
+  {
+    key: 'transactionNumber',
+    label: 'Transaction Number',
+    searchable: false,
+    sortable: true,
+    render: (params: string): string => {
+      return params;
+    }
+  },
+  {
+    key: 'transactionAccountStatement',
+    label: 'Sransaction Account Statement',
+    searchable: false,
+    sortable: true,
+    render: (params: string): string => {
+      return params;
+    }
+  },];
 
   @State() orderBy: OrderBy = {
     columnKey: null,
@@ -72,18 +285,6 @@ export class UIList {
     this.headerAccordion.map(value => (
       <th>
         <p>{value.label}</p>
-        {/* {value.sortable ? (
-          <i
-            class={
-              this.orderBy.columnKey === value.key
-                ? this.orderBy.type === TypeOrderBy[0]
-                  ? 'orderByAsc'
-                  : 'orderByDesc'
-                : 'withoutOrderBy'
-            }
-            onClick={this.changeOrderBy.bind(this, value.key)}
-          />
-        ) : null} */}
       </th>
     ));
 
@@ -124,18 +325,13 @@ export class UIList {
 
   toggleExpander = (index: number) => (index === this.accordion ? (this.accordion = null) : (this.accordion = index));
 
-  renderBodyAccordion = () => {
+  renderBodyAccordion = (infoDetails: any) => {
     return (
-      !this.isEmpty(this.dataTable[0]) &&
-      this.dataTable.map((value, index) => {
-        return (
-          <tr key={index}>
-            {this.headerAccordion.map(header => (
-              <td class={header.key} innerHTML={header.render(value.infoDetails[header.key])}></td>
-            ))}
-          </tr>
-        );
-      })
+      <tr>
+        {this.headerAccordion.map(header => (
+          <td class={header.key} innerHTML={header.render(infoDetails[header.key])}></td>
+        ))}
+      </tr>
     );
   };
 
@@ -145,7 +341,7 @@ export class UIList {
       this.dataTable.map((value, index) => {
         return (
           <Fragment>
-            <tr key={index}>
+            <tr key={index} class={this.accordion === index ? 'tr-selected' : ''}>
               {this.headers.map(header => {
                 if (header.type === 'button') {
                   return (
@@ -190,7 +386,7 @@ export class UIList {
                   <div>
                     <table class='ui-list-table' id='example'>
                       <thead>{this.renderHeadersAccordion()}</thead>
-                      <tbody>{this.dataTableAccordion.length > 0 && this.renderBodyAccordion()}</tbody>
+                      <tbody>{this.dataTable.length > 0 && this.renderBodyAccordion(value.infoDetails)}</tbody>
                     </table>
                   </div>
                 </td>
