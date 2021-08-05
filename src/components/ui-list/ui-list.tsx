@@ -36,7 +36,6 @@ export interface HeadersElement {
 export class UIList {
   @Prop() dataTable: any[] = [];
   @Prop() headers: HeadersElement[] = [];
-  @Prop() dataTableAccordion?: any[] = [];
   @Prop() headerAccordion?: any[] = [];
 
   @State() orderBy: OrderBy = {
