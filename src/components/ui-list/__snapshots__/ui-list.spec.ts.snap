@@ -5,12 +5,14 @@ exports[`ui-list renders with data 1`] = `
   <div class="ui-list-table-content">
     <table class="ui-list-table">
       <thead>
-        <th>
-          <p>
-            Name
-          </p>
-          <i class="withoutOrderBy"></i>
-        </th>
+        <tr>
+          <th>
+            <p>
+              Name
+            </p>
+            <i class="withoutOrderBy"></i>
+          </th>
+        </tr>
       </thead>
       <tbody>
         <tr>

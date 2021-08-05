@@ -48,31 +48,38 @@ export class UIList {
 
   @Event({ eventName: 'fa-event-list-order-by' }) listOrderBy: EventEmitter<Object>;
 
-  renderHeaders = () =>
-    this.headers.map(value => (
-      <th>
-        <p>{value.label}</p>
-        {value.sortable ? (
-          <i
-            class={
-              this.orderBy.columnKey === value.key
-                ? this.orderBy.type === TypeOrderBy[0]
-                  ? 'orderByAsc'
-                  : 'orderByDesc'
-                : 'withoutOrderBy'
-            }
-            onClick={this.changeOrderBy.bind(this, value.key)}
-          />
-        ) : null}
-      </th>
-    ));
+  renderHeaders = () => this.headers.length > 0 ? <tr>
+    {
+      this.headers.map(value => (
+        <th>
+          <p>{value.label}</p>
+          {value.sortable ? (
+            <i
+              class={
+                this.orderBy.columnKey === value.key
+                  ? this.orderBy.type === TypeOrderBy[0]
+                    ? 'orderByAsc'
+                    : 'orderByDesc'
+                  : 'withoutOrderBy'
+              }
+              onClick={this.changeOrderBy.bind(this, value.key)}
+            />
+          ) : null}
+        </th>
+      ))
+    }
+  </tr> : null
+    
 
-  renderHeadersAccordion = () =>
-    this.headerAccordion.map(value => (
-      <th>
-        <p>{value.label}</p>
-      </th>
-    ));
+  renderHeadersAccordion = () => <tr>
+    {
+      this.headerAccordion.map(value => (
+        <th>
+          <p>{value.label}</p>
+        </th>
+      ))
+    }
+  </tr>
 
   changeOrderBy(keyHeader: string) {
     const indexTypeOrderBy = TypeOrderBy.findIndex(el => el === this.orderBy.type);
@@ -194,7 +201,7 @@ export class UIList {
   render() {
     return (
       <div class='ui-list-table-content'>
-        <table class='ui-list-table' id='example'>
+        <table class='ui-list-table'>
           <thead>{this.renderHeaders()}</thead>
           <tbody>{this.dataTable.length > 0 && this.renderBody()}</tbody>
         </table>
