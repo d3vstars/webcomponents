@@ -161,7 +161,7 @@ export class UIList {
                         class={`${header.key} tr-accordion`}
                         >
                           <i
-                            class={this.accordion === index ? 'plus' : 'minus'}
+                            class={this.accordion === index ? 'minus' : 'plus'}
                             onClick={() => this.toggleExpander(index)}
                           />
                         </td>
