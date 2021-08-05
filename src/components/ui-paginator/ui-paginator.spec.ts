@@ -18,8 +18,8 @@ describe('ui-paginator', () => {
             <div class="button-content">
               <div class="go-to-page-content">
                 <div>
-                  <label>Go to page: </label>
-                  <input class="" type="number" placeholder="Pages">
+                  <label class="paginator-label">Go to page: </label>
+                  <input class="paginator-input" type="number" placeholder="Pages">
                   <p class="errors"></p>
                 </div>
               </div>
@@ -37,8 +37,8 @@ describe('ui-paginator', () => {
             </div>
             <div class="item-page">
               <div>
-                <label>Items per page</label>
-                <select>
+                <label class="select-label">Items per page</label>
+                <select class="select-input">
                   <option value="15">15</option>
                   <option selected="" value="18">18</option>
                   <option value="30">30</option>
