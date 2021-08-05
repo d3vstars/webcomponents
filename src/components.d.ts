@@ -9,6 +9,7 @@ import { HeadersElement } from "./components/ui-list/ui-list";
 export namespace Components {
     interface UiList {
         "dataTable": any[];
+        "headerAccordion"?: any[];
         "headers": HeadersElement[];
     }
     interface UiModal {
@@ -51,6 +52,7 @@ declare global {
 declare namespace LocalJSX {
     interface UiList {
         "dataTable"?: any[];
+        "headerAccordion"?: any[];
         "headers"?: HeadersElement[];
         "onFa-event-list-order-by"?: (event: CustomEvent<Object>) => void;
     }
