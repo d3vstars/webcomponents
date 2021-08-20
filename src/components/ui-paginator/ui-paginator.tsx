@@ -106,7 +106,6 @@ export class UiPaginator {
     this.numberPages = Math.ceil(this.realNumberPage);
     this.itemsPerPageWillChange.emit({ oldNumItems: this.itemsPerPage, newNumItems: numPages });
     this.itemsPerPage = numPages;
-    
   }
 
   @Listen('fa-event-paginator-page-change')
@@ -119,7 +118,7 @@ export class UiPaginator {
   render() {
     const goToPageContent = this.isInputPage ? (
       <div>
-        <label class="paginator-label">Go to page: </label>
+        <label class='paginator-label'>Go to page: </label>
         <input
           class={!this.inputError.length ? 'paginator-input' : 'paginator-input error'}
           type='number'
@@ -133,8 +132,8 @@ export class UiPaginator {
     );
     const itemsPerPageSelect = this.isSelectItemsPage ? (
       <div>
-        <label class="select-label">Items per page</label>
-        <select class="select-input" onChange={this.handlerSelectChange.bind(this)}>
+        <label class='select-label'>Items per page</label>
+        <select class='select-input' onChange={this.handlerSelectChange.bind(this)}>
           {this.optionsItemsPage.map(option => (
             <option value={option} selected={option === this.itemsPerPage}>
               {option}

@@ -48,38 +48,38 @@ export class UIList {
 
   @Event({ eventName: 'fa-event-list-order-by' }) listOrderBy: EventEmitter<Object>;
 
-  renderHeaders = () => this.headers.length > 0 ? <tr>
-    {
-      this.headers.map(value => (
-        <th>
-          <p>{value.label}</p>
-          {value.sortable ? (
-            <i
-              class={
-                this.orderBy.columnKey === value.key
-                  ? this.orderBy.type === TypeOrderBy[0]
-                    ? 'orderByAsc'
-                    : 'orderByDesc'
-                  : 'withoutOrderBy'
-              }
-              onClick={this.changeOrderBy.bind(this, value.key)}
-            />
-          ) : null}
-        </th>
-      ))
-    }
-  </tr> : null
-    
+  renderHeaders = () =>
+    this.headers.length > 0 ? (
+      <tr>
+        {this.headers.map(value => (
+          <th>
+            <p>{value.label}</p>
+            {value.sortable ? (
+              <i
+                class={
+                  this.orderBy.columnKey === value.key
+                    ? this.orderBy.type === TypeOrderBy[0]
+                      ? 'orderByAsc'
+                      : 'orderByDesc'
+                    : 'withoutOrderBy'
+                }
+                onClick={this.changeOrderBy.bind(this, value.key)}
+              />
+            ) : null}
+          </th>
+        ))}
+      </tr>
+    ) : null;
 
-  renderHeadersAccordion = () => <tr>
-    {
-      this.headerAccordion.map(value => (
+  renderHeadersAccordion = () => (
+    <tr>
+      {this.headerAccordion.map(value => (
         <th>
           <p>{value.label}</p>
         </th>
-      ))
-    }
-  </tr>
+      ))}
+    </tr>
+  );
 
   changeOrderBy(keyHeader: string) {
     const indexTypeOrderBy = TypeOrderBy.findIndex(el => el === this.orderBy.type);
@@ -164,14 +164,12 @@ export class UIList {
                   }
                   if (header.accordion) {
                     return (
-                      <td
-                        class={`${header.key} tr-accordion`}
-                        >
-                          <i
-                            class={this.accordion === index ? 'minus' : 'plus'}
-                            onClick={() => this.toggleExpander(index)}
-                          />
-                        </td>
+                      <td class={`${header.key} tr-accordion`}>
+                        <i
+                          class={this.accordion === index ? 'minus' : 'plus'}
+                          onClick={() => this.toggleExpander(index)}
+                        />
+                      </td>
                     );
                   }
                   return <td class={header.key} innerHTML={header.render(value[header.key])}></td>;
@@ -184,7 +182,7 @@ export class UIList {
                 class={`tr-accordion-details ${this.accordion === index ? 'tr-accordion-details-show' : ''}`}>
                 <td colSpan={this.headers.length}>
                   <div>
-                    <table class='ui-list-table' id='example'>
+                    <table class='ui-list-table'>
                       <thead>{this.renderHeadersAccordion()}</thead>
                       <tbody>{this.renderBodyAccordion(value.infoDetails)}</tbody>
                     </table>
