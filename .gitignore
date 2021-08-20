@@ -1,3 +1,4 @@
+coverage/
 dist/
 www/
 loader/
@@ -25,3 +26,4 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
+

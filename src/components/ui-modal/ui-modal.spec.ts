@@ -5,8 +5,9 @@ describe('ui-modal', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [UiModal],
-      html: `<ui-modal></ui-modal>`,
+      html: `<ui-modal></ui-modal>`
     });
+
     expect(root).toEqualHtml(`
     <ui-modal>
       <mock:shadow-root>
@@ -20,11 +21,12 @@ describe('ui-modal', () => {
   });
 
   it('renders with values', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [UiModal],
-      html: `<ui-modal is-active="true"></ui-modal>`,
+      html: `<ui-modal is-active="true"></ui-modal>`
     });
-    expect(root).toEqualHtml(`
+
+    expect(page.root).toEqualHtml(`
     <ui-modal is-active="">
       <mock:shadow-root>
         <div class="active modal-content">
