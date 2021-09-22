@@ -3,6 +3,7 @@ interface ActionsButton {
   text: string;
   eventName: string;
   style?: any;
+  condition?: Function;
 }
 
 interface RenderFunction {
@@ -142,15 +143,34 @@ export class UIList {
                 if (header.type === 'button') {
                   return (
                     <td class={header.key}>
-                      {header.actionsButton.map(actionButton => (
-                        <div class='ui-list-button-content'>
-                          <button
-                            style={actionButton.style}
-                            onClick={() => this.handleEvent(value, actionButton.eventName)}>
-                            {actionButton.text}
-                          </button>
-                        </div>
-                      ))}
+                      {header.actionsButton.map(actionButton => {
+                        console.log("actionButton.condition: ", actionButton, actionButton.condition);
+                        
+                        if (actionButton.condition) {
+                          if (actionButton.condition(value)) {
+                            return (
+                              <div class='ui-list-button-content'>
+                                <button
+                                  style={actionButton.style}
+                                  onClick={() => this.handleEvent(value, actionButton.eventName)}>
+                                  {actionButton.text}
+                                </button>
+                              </div>
+                            )
+                          }
+                          return null;
+                        }
+                          
+                        return (
+                          <div class='ui-list-button-content'>
+                            <button
+                              style={actionButton.style}
+                              onClick={() => this.handleEvent(value, actionButton.eventName)}>
+                              {actionButton.text}
+                            </button>
+                          </div>
+                        )
+                      })}
                     </td>
                   );
                 } else {
