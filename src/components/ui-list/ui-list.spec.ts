@@ -385,5 +385,3 @@ describe('ui-list', () => {
      </ui-list>`);
   });
 });
-
-
