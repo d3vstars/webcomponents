@@ -144,8 +144,6 @@ export class UIList {
                   return (
                     <td class={header.key}>
                       {header.actionsButton.map(actionButton => {
-                        console.log("actionButton.condition: ", actionButton, actionButton.condition);
-                        
                         if (actionButton.condition) {
                           if (actionButton.condition(value)) {
                             return (
