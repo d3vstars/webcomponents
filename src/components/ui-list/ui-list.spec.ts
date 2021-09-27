@@ -121,6 +121,102 @@ describe('ui-list', () => {
     expect(iconSortable.classList.contains('withoutOrderBy')).toBe(true);
   });
 
+  it('renders actions buttons with condition flag', async () => {
+    const page = await newSpecPage({
+      components: [UIList],
+      html: '<div></div>'
+    });
+
+    let component = page.doc.createElement('ui-list');
+    component.dataTable = [{ name: 'John', surname: 'Doe' }];
+
+    component.headers = [
+      {
+        // @ts-ignore
+        key: 'name',
+        label: 'Name',
+        searchable: false,
+        render: (nameAttribute: string) => {
+          return nameAttribute;
+        },
+        sortable: true
+      },
+      {
+        // @ts-ignore
+        key: 'surname',
+        label: 'Surname',
+        searchable: false,
+        render: (surnameAttribute: string) => {
+          return surnameAttribute;
+        },
+        sortable: true
+      },
+      {
+        key: 'actions',
+        label: 'Actions',
+        searchable: false,
+        sortable: false,
+        type: 'button',
+        actionsButton: [
+          {
+            text: 'Review',
+            eventName: 'review',
+            condition: value => value
+          }
+        ]
+      }
+    ];
+
+    page.root.appendChild(component);
+    await page.waitForChanges();
+
+    const buttonHandleEvent = page.doc.querySelector('.ui-list-button-content button') as HTMLElement;
+    buttonHandleEvent.click();
+
+    expect(page.root).toEqualHtml(`<ui-list>
+       <div class="ui-list-table-content">
+         <table class="ui-list-table">
+           <thead>
+             <th>
+               <p>
+                 Name
+               </p>
+               <i class="withoutOrderBy"></i>
+             </th>
+             <th>
+               <p>
+                  Surname
+               </p>
+               <i class="withoutOrderBy"></i>
+             </th>
+             <th>
+               <p>
+                 Actions
+               </p>
+             </th>
+           </thead>
+         <tbody>
+            <tr>
+              <td class="name">
+                John
+              </td>
+              <td class="surname">
+                Doe
+              </td>
+              <td class="actions">
+                <div class="ui-list-button-content">
+                  <button>
+                    Review
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+         </table>
+       </div>
+     </ui-list>`);
+  });
+
   it('renders with data and with accordion, withoutOrderBy and redirect field', async () => {
     const page = await newSpecPage({
       components: [UIList],
