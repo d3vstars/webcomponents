@@ -1,6 +1,6 @@
 import { Component, Prop, Element, Event, EventEmitter, State, h, Fragment } from '@stencil/core';
 interface ActionsButton {
-  text: string;
+  text: (any) => string | string;
   eventName: string;
   style?: any;
   condition?: Function;
@@ -151,7 +151,7 @@ export class UIList {
                                 <button
                                   style={actionButton.style}
                                   onClick={() => this.handleEvent(value, actionButton.eventName)}>
-                                  {actionButton.text}
+                                  {typeof actionButton.text === 'function' ? actionButton.text(value) : actionButton.text}
                                 </button>
                               </div>
                             )
@@ -164,7 +164,7 @@ export class UIList {
                             <button
                               style={actionButton.style}
                               onClick={() => this.handleEvent(value, actionButton.eventName)}>
-                              {actionButton.text}
+                              {typeof actionButton.text === 'function' ? actionButton.text(value) : actionButton.text}
                             </button>
                           </div>
                         )
