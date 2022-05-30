@@ -237,9 +237,7 @@ export class UIList {
                         <div class='tooltip'>
                           {header.render(value[header.key])}
                           <i class='edit-icon' onClick={() => this.openTooltip(index)} />
-
-                          {this.isOpenTooltip && this.tooltipId === index ? (
-                            <div>
+                            <div class={`tooltip-information-container ${this.isOpenTooltip && this.tooltipId === index ? '' : 'hidden'}`} >
                               <div class='tooltip-arrow' />
                               <div class='tooltip-edit'>
                                 <div class='container'>
@@ -291,7 +289,6 @@ export class UIList {
                                 </div>
                               </div>
                             </div>
-                          ) : null}
                         </div>
                       </td>
                     );
