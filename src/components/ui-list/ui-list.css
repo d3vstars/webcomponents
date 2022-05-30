@@ -193,11 +193,14 @@
   display: inline-block;
 }
 
-.tooltip-edit .tooltip-arrow {
-  top: 50%;
-  left: 0;
-  border-width: 5px 5px 5px 0;
-  border-right-color: #000;
+.tooltip-arrow {
+  border: solid;
+  border-color: #d3d3d3 transparent;
+  border-width: 0px 10px 12px 10px;
+  content: '';
+  top: 25px;
+  left: 40px;
+  position: absolute;
 }
 
 .tooltip-edit {
