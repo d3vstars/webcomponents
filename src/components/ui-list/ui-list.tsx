@@ -169,7 +169,7 @@ export class UIList {
                   <label>{header.translations.label}</label>
                 </div>
                 <div class='column-right'>
-                  <input onInput={this.handleChange} value={header.render(inputValue)} />
+                  <input type='number' onInput={this.handleChange} value={inputValue} />
                 </div>
               </div>
 
@@ -223,7 +223,11 @@ export class UIList {
   handleChange = event => {
     this.isDisabled = false;
     const { value } = event.target;
-    this.tooltipValue = value;
+    if (value.length > 0) {
+      this.tooltipValue = value;
+    } else {
+      this.isDisabled = true;
+    }
   };
 
   handleSubmit = (event, eventName, keyValue) => {
