@@ -7,14 +7,14 @@ const data = [
     name: 'Nico',
     image: 'https://ih1.redbubble.net/image.1446145132.9260/flat,128x128,075,t.jpg',
     location: { address: 'Pajaritos #12333', city: 'Santiago' },
-    colors: ['red', 'green', 'yellow'],
+    colors: ['red', 'green', 'yellow']
   },
   {
     name: 'Luis',
     image: 'https://pm1.narvii.com/6431/82db7fa9ab4002a3c3931e2f6f69dc4888eaf3f1_128.jpg',
     location: { address: 'Maracaibo #38499', city: 'Maracaibo' },
-    colors: ['purple', 'blue', 'black'],
-  },
+    colors: ['purple', 'blue', 'black']
+  }
 ];
 
 const headersData = [
@@ -24,7 +24,7 @@ const headersData = [
     searchable: false,
     render: nameAttribute => {
       return `<h1>${nameAttribute}</h1>`;
-    },
+    }
   },
   {
     key: 'image',
@@ -32,7 +32,7 @@ const headersData = [
     searchable: false,
     render: image => {
       return `<img src=${image} />`;
-    },
+    }
   },
   {
     key: 'location',
@@ -41,7 +41,7 @@ const headersData = [
     render: location => {
       const { address, city } = location;
       return `Address: ${address} from ${city}`;
-    },
+    }
   },
   {
     key: 'colors',
@@ -49,7 +49,7 @@ const headersData = [
     searchable: false,
     render: colors => {
       return `<ul>${colors.map(value => `<li>${value}</li>`).join('')}</ul>`;
-    },
+    }
   },
   {
     key: 'actionsButton',
@@ -76,10 +76,10 @@ const headersData = [
           lineHeight: '36px',
           padding: '0 16px',
           textTransform: 'uppercase',
-          margin: '0px 5px 0px 5px',
-        },
-      },
-    ],
+          margin: '0px 5px 0px 5px'
+        }
+      }
+    ]
   },
   {
     key: 'actionsButtons',
@@ -106,8 +106,8 @@ const headersData = [
           lineHeight: '36px',
           padding: '0 16px',
           textTransform: 'uppercase',
-          margin: '0px 5px 0px 5px',
-        },
+          margin: '0px 5px 0px 5px'
+        }
       },
       {
         text: 'Update',
@@ -128,11 +128,11 @@ const headersData = [
           lineHeight: '36px',
           padding: '0 16px',
           textTransform: 'uppercase',
-          margin: '0px 5px 0px 5px',
-        },
-      },
-    ],
-  },
+          margin: '0px 5px 0px 5px'
+        }
+      }
+    ]
+  }
 ];
 
 storiesOf('UI List', module)
@@ -147,7 +147,7 @@ storiesOf('UI List', module)
       });
       return `<ui-list />`;
     },
-    { notes },
+    { notes }
   )
   .add(
     'With object data',
@@ -160,7 +160,7 @@ storiesOf('UI List', module)
       });
       return `<ui-list>`;
     },
-    { notes },
+    { notes }
   )
   .add(
     'With array data',
@@ -173,7 +173,7 @@ storiesOf('UI List', module)
       });
       return `<ui-list>`;
     },
-    { notes },
+    { notes }
   )
   .add(
     'With loading',
@@ -185,7 +185,7 @@ storiesOf('UI List', module)
       });
       return `<ui-list>`;
     },
-    { notes },
+    { notes }
   )
   .add(
     'With one button',
@@ -198,7 +198,7 @@ storiesOf('UI List', module)
       });
       return `<ui-list>`;
     },
-    { notes },
+    { notes }
   )
   .add(
     'With more than one buttons',
@@ -211,5 +211,5 @@ storiesOf('UI List', module)
       });
       return `<ui-list>`;
     },
-    { notes },
+    { notes }
   );

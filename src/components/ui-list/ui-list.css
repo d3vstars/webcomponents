@@ -1,6 +1,5 @@
 .ui-list-table-content {
   max-width: 100%;
-  overflow-x: auto;
   margin: 20px 0px;
 }
 
@@ -149,4 +148,164 @@
 
 .ui-list-table .tr-accordion-details-show td div table tbody tr td {
   padding: 7px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: white;
+  color: #333333;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  bottom: 20px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.edit-icon {
+  position: absolute;
+  width: 12px;
+  height: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACDSURBVHgBlZKBDYAgDAQrcQBHYAQZwQmcgckYxRF0AxmBEWxJa4ia8H7yQEkuX1KIAKWUJrHVDgF429g7n73cDQDgFZJzZgcHJKzshV3EMcYydoBZTQrmz/YegOnghGCFQwBNuTUggLzjBf0B2vZgoCbpwE4UaJNgoCbJYt+DdHjU0QXXcT/ULxTUEAAAAABJRU5ErkJggg==');
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-edit:before {
+  content: '';
+  top: -9px;
+  left: 170px;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  transform: rotate(45deg);
+  z-index: 2;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.tooltip-edit {
+  position: relative;
+  z-index: 1;
+  width: 400px;
+  background: #ffffff;
+  border-radius: 4px;
+  border: 0.7px solid #e1e1e1;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  margin-top: 12px;
+}
+
+.tooltip .tooltip-information-container {
+  transition-duration: 1s;
+  max-height: 400px;
+  height: auto;
+  overflow: hidden;
+  position: absolute;
+  left: -140%;
+}
+
+.tooltip .tooltip-information-container.hidden {
+  max-height: 0px;
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+}
+
+.column-left {
+  width: 180px;
+  flex: 0 0 120px;
+}
+
+.column-left label {
+  margin: 0 10px 0px 90px;
+}
+
+.column-right {
+  width: 230px;
+  flex: 0 0 230px;
+  border-left: 1px solid #eee;
+}
+
+.column-right input {
+  height: 25px;
+}
+
+.message-info {
+  display: flex;
+  width: 100%;
+  margin: 5px;
+  align-items: center;
+}
+
+.message-info svg {
+  margin-right: 10px;
+}
+
+.container-buttons {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-buttons .submit-button {
+  width: auto;
+  height: 29px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ffffff;
+  background: #4e71c0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25), inset 1px 1px 2px rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+}
+
+.container-buttons button:disabled {
+  background-color: #849eda;
+  cursor: default;
+  color: #ffffff;
+}
+
+.container-buttons .cancel-button {
+  width: 72px;
+  height: 29px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  background: #f2f2f2;
+  border: 0.5px solid rgba(102, 102, 102, 0.4);
+  border-radius: 1px;
+  color: #666666;
+  margin-left: 10px;
+  cursor: pointer;
 }
