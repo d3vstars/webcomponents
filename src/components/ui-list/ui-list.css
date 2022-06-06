@@ -328,19 +328,6 @@
   position: relative;
 }
 
-.tooltip-info:after {
-  opacity: 0;
-  -webkit-transition: opacity 2s ease-in-out;
-    -moz-transition: opacity 2s ease-in-out;
-    -ms-transition: opacity 2s ease-in-out;
-    -o-transition: opacity 2s ease-in-out;
-    transition: opacity 2s ease-in-out;
-}
-
-.tooltip-info:hover:after {
-  opacity: 1;
-}
-
 .tooltip-content {
   position: absolute;
   width: 300px;
