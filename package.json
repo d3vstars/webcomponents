@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@stencil/core": "^2.0.1",
+    "dayjs": "^1.11.3",
     "prettier": "^2.2.1"
   },
   "license": "MIT",
