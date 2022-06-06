@@ -1,10 +1,5 @@
 import { Component, Prop, Element, Event, EventEmitter, State, h, Fragment } from '@stencil/core';
-import dayjs from 'dayjs';
-
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { formatLocaleDate } from './helpers/date';
 
 interface ActionsButton {
   text: any;
@@ -175,16 +170,26 @@ export class UIList {
   renderTooltipInfo = (header, index: number, value) => {
     const currentInfo = value.amountInfo.amountHistory[1];
     const previousInfo = value.amountInfo.amountHistory[0];
+    const {
+      label1,
+      label2,
+      fieldInfo,
+      condition,
+      label,
+      locale,
+      formatDate,
+      userLabelInfo,
+      amountLabelInfo
+    } = header.tooltipInfo;
     return (
       <td>
         {header.render(value[header.key])}
-        {value.amountInfo.currentAmountStatus === header.tooltipInfo.condition &&
-        value.amountInfo.amountHistory.length > 1 ? (
+        {value.amountInfo.currentAmountStatus === condition && value.amountInfo.amountHistory.length > 1 ? (
           <p
             class='label-info'
             onMouseEnter={() => this.showTooltipInfo(index)}
             onMouseLeave={() => this.hideTooltipInfo()}>
-            {header.tooltipInfo.label}
+            {label}
           </p>
         ) : null}
         {this.tooltipInfo && this.tooltipInfoId === index && value.amountInfo.amountHistory.length > 1 ? (
@@ -192,26 +197,24 @@ export class UIList {
             <div class='tooltip-arrow' />
             <div class='tooltip-content'>
               <div class='container'>
-                <p class='column-left'>{header.tooltipInfo.label1}:</p>
+                <p class='column-left'>{label1}:</p>
                 <p class='column-right'>
-                  {this.currencyFormat(previousInfo[header.tooltipInfo.fieldInfo], header)}{' '}
-                  {header.numberFormat.currency}
+                  {this.currencyFormat(previousInfo[fieldInfo], header)} {header.numberFormat.currency}
                 </p>
               </div>
               <div class='container'>
-                <p class='column-left'>{header.tooltipInfo.label2}:</p>
+                <p class='column-left'>{label2}:</p>
                 <p class='column-right'>
-                  {this.currencyFormat(currentInfo[header.tooltipInfo.fieldInfo], header)}{' '}
-                  {header.numberFormat.currency}
+                  {this.currencyFormat(currentInfo[fieldInfo], header)} {header.numberFormat.currency}
                 </p>
               </div>
               <div>
                 <p>
-                  {header.tooltipInfo.userLabelInfo}: {value.amountInfo.editAmountInfo.userEmail}
+                  {userLabelInfo}: {value.amountInfo.editAmountInfo.userEmail}
                 </p>
                 <p class='date-info'>
-                  {header.tooltipInfo.amountLabelInfo}
-                  {dayjs(value.amountInfo.editAmountInfo.date).format(header.tooltipInfo.formatDate)}
+                  {amountLabelInfo}
+                  {formatLocaleDate(value.amountInfo.editAmountInfo.date, locale, formatDate)}
                 </p>
               </div>
             </div>
