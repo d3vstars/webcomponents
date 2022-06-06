@@ -1,4 +1,10 @@
 import { Component, Prop, Element, Event, EventEmitter, State, h, Fragment } from '@stencil/core';
+import dayjs from 'dayjs';
+
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 interface ActionsButton {
   text: any;
@@ -39,6 +45,7 @@ export interface HeadersElement {
     type: string;
     currency: string;
   };
+  tooltipInfo?: any;
 }
 @Component({
   tag: 'ui-list',
@@ -58,7 +65,10 @@ export class UIList {
   @State() isOpenTooltip: boolean = false;
   @State() isDisabled: boolean = true;
   @State() tooltipId: number;
+  @State() tooltipInfoId: number;
   @State() tooltipValue: any;
+  @State() editOnFocus: boolean = false;
+  @State() tooltipInfo: boolean = false;
 
   @Element() action: HTMLElement;
 
@@ -152,14 +162,78 @@ export class UIList {
     return null;
   };
 
+  showTooltipInfo = index => {
+    this.tooltipInfo = true;
+    this.tooltipInfoId = index;
+  };
+
+  hideTooltipInfo = () => {
+    this.tooltipInfo = false;
+    this.tooltipInfoId = 0;
+  };
+
+  renderTooltipInfo = (header, index: number, value) => {
+    const currentInfo = value.amountInfo.amountHistory[1];
+    const previousInfo = value.amountInfo.amountHistory[0];
+    return (
+      <td>
+        {header.render(value[header.key])}
+        {value.amountInfo.currentAmountStatus === header.tooltipInfo.condition &&
+        value.amountInfo.amountHistory.length > 1 ? (
+          <p
+            class='label-info'
+            onMouseEnter={() => this.showTooltipInfo(index)}
+            onMouseLeave={() => this.hideTooltipInfo()}>
+            {header.tooltipInfo.label}
+          </p>
+        ) : null}
+        {this.tooltipInfo && this.tooltipInfoId === index && value.amountInfo.amountHistory.length > 1 ? (
+          <div class='tooltip-info'>
+            <div class='tooltip-arrow' />
+            <div class='tooltip-content'>
+              <div class='container'>
+                <p class='column-left'>{header.tooltipInfo.label1}:</p>
+                <p class='column-right'>
+                  {this.currencyFormat(previousInfo[header.tooltipInfo.fieldInfo], header)}{' '}
+                  {header.numberFormat.currency}
+                </p>
+              </div>
+              <div class='container'>
+                <p class='column-left'>{header.tooltipInfo.label2}:</p>
+                <p class='column-right'>
+                  {this.currencyFormat(currentInfo[header.tooltipInfo.fieldInfo], header)}{' '}
+                  {header.numberFormat.currency}
+                </p>
+              </div>
+              <div>
+                <p>
+                  {header.tooltipInfo.userLabelInfo}: {value.amountInfo.editAmountInfo.userEmail}
+                </p>
+                <p class='date-info'>
+                  {header.tooltipInfo.amountLabelInfo}
+                  {dayjs(value.amountInfo.editAmountInfo.date).format(header.tooltipInfo.formatDate)}
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : null}
+      </td>
+    );
+  };
+
   renderEditTooltipBody = (header, index: number, value) => {
     const headerValue = value[header.reference.value];
     const inputValue = this.currencyFormat(headerValue, header);
     return (
-      <td class={`${header.key}`}>
+      <td
+        class={`${header.key}`}
+        onMouseEnter={() => this.handleInputFocus(index)}
+        onMouseLeave={this.handleInputFocusOut}>
         <div class='tooltip'>
           {header.render(value[header.key])}
-          <i class='edit-icon' onClick={() => this.openTooltip(index)} />
+          {this.editOnFocus && this.tooltipId === index ? (
+            <i class='edit-icon' onClick={() => this.openTooltip(index)} />
+          ) : null}
           <div
             class={`tooltip-information-container ${this.isOpenTooltip && this.tooltipId === index ? '' : 'hidden'}`}>
             <div class='tooltip-arrow' />
@@ -190,9 +264,7 @@ export class UIList {
                   class='submit-button'
                   type='submit'
                   disabled={this.isDisabled}
-                  onClick={event =>
-                    this.handleSubmit(event, header.eventName, header.render(value[header.reference.key]))
-                  }>
+                  onClick={event => this.handleSubmit(event, header.eventName, value[header.reference.key])}>
                   {header.translations.buttons.confirm}
                 </button>
                 <button class='cancel-button' onClick={this.closeTooltip}>
@@ -209,6 +281,17 @@ export class UIList {
   openTooltip = (index: number) => {
     this.tooltipId = index;
     this.isOpenTooltip = true;
+  };
+
+  handleInputFocus = index => {
+    this.tooltipId = index;
+    this.editOnFocus = true;
+  };
+
+  handleInputFocusOut = () => {
+    this.editOnFocus = false;
+    this.tooltipId = 0;
+    this.isOpenTooltip = false;
   };
 
   currencyFormat = (value, header) => {
@@ -303,6 +386,9 @@ export class UIList {
 
                   if (header.editable) {
                     return this.renderEditTooltipBody(header, index, value);
+                  }
+                  if (header.tooltipInfo) {
+                    return this.renderTooltipInfo(header, index, value);
                   }
                   if (header.accordion) {
                     return (
