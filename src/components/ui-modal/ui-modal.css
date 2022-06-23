@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-:host([is-active]){
+:host([is-active]) {
   pointer-events: all;
 }
 
@@ -21,7 +21,7 @@
   position: fixed;
   height: 100vh;
   width: 100%;
-  -webkit-transition:  opacity 0.25s ease;
+  -webkit-transition: opacity 0.25s ease;
   -moz-transition: opacity 0.25s ease;
   -ms-transition: opacity 0.25s ease;
   -o-transition: opacity 0.25s ease;
@@ -47,11 +47,11 @@
   z-index: 900;
 }
 
-.modal-content .modal{
+.modal-content .modal {
   position: fixed;
   z-index: 901;
-  background-color: #ffffff; 
-  overflow: auto;
+  background-color: #ffffff;
+  overflow: hidden;
   border-radius: 2px;
   width: var(--modal-width, 50%);
   max-width: 90%;
@@ -64,11 +64,11 @@
   transition: margin-top 0.25s ease;
 }
 
-.modal-content.active .modal{
+.modal-content.active .modal {
   margin-top: 0%;
 }
 
-.modal-content .modal slot[name="title"]{
+.modal-content .modal slot[name="title"] {
   color: red;
   width: 100%;
   padding: 20px 20px;
