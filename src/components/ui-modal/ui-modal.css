@@ -51,7 +51,7 @@
   position: fixed;
   z-index: 901;
   background-color: #ffffff;
-  overflow: hidden;
+  overflow: auto;
   border-radius: 2px;
   width: var(--modal-width, 50%);
   max-width: 90%;
