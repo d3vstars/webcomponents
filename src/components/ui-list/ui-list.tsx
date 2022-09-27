@@ -199,13 +199,13 @@ export class UIList {
               <div class='container'>
                 <p class='column-left'>{label1}:</p>
                 <p class='column-right'>
-                  {this.currencyFormat(previousInfo[fieldInfo], header)} {header.numberFormat.taxAmount}
+                  {this.currencyFormat(previousInfo[fieldInfo], header)} {header.numberFormat.currency}
                 </p>
               </div>
               <div class='container'>
                 <p class='column-left'>{label2}:</p>
                 <p class='column-right'>
-                  {this.currencyFormat(currentInfo[fieldInfo], header)} {header.numberFormat.taxAmount}
+                  {this.currencyFormat(currentInfo[fieldInfo], header)} {header.numberFormat.currency}
                 </p>
               </div>
               <div>
